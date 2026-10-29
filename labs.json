@@ -1,0 +1,11 @@
+{
+  "note": "open: true unlocks a lab on the student site. After editing, run build/publish-labs.ps1. slides = slide numbers in the teacher's deck.",
+  "labs": [
+    { "id": "cu",    "tag": "เรื่องที่ 1", "title": "CuSO₄ + HCl",                              "desc": "สีเปลี่ยนกลับไปกลับมาได้ไหม · 3 หน้า",                      "slides": "9-11",         "open": true },
+    { "id": "fe",    "tag": "เรื่องที่ 2", "title": "Fe³⁺ กับ Fe²⁺",                            "desc": "พิสูจน์ว่าปฏิกิริยาผันกลับได้ · ตอนที่ 1 และตอนที่ 2",      "slides": "22-25,27-28",  "open": false },
+    { "id": "conc",  "tag": "เรื่องที่ 9", "title": "ความเข้มข้นกับภาวะสมดุล",                  "desc": "Fe³⁺ + SCN⁻ ⇌ FeSCN²⁺ · เติมสารแล้วดูสี",                  "slides": "88-90",        "open": false },
+    { "id": "syr",   "tag": "เรื่องที่ 9", "title": "ความดัน: กด/ดึงกระบอกฉีดยา NO₂",           "desc": "ลากก้านกระบอกฉีดยาดูสีของแก๊ส",                              "slides": "104",          "open": false },
+    { "id": "tmp",   "tag": "เรื่องที่ 9", "title": "อุณหภูมิ: แช่น้ำร้อน/น้ำแข็ง NO₂",         "desc": "เปลี่ยนอุณหภูมิแล้วดูสีของแก๊ส",                             "slides": "111",          "open": false },
+    { "id": "hab",   "tag": "เรื่องที่ 10", "title": "หาภาวะที่เหมาะสมของกระบวนการฮาเบอร์",     "desc": "เลือกอุณหภูมิและความดัน ดูปริมาณแอมโมเนีย",                  "slides": "118",          "open": false }
+  ]
+}

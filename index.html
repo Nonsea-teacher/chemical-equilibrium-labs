@@ -18,6 +18,8 @@
   li b { display: block; font-size: 22px; }
   li small { color: var(--soft); font-size: 16px; }
   .tag { display: inline-block; font-size: 14px; color: #fff; background: var(--teal); border-radius: 999px; padding: 0 10px; margin-right: 8px; vertical-align: 2px; }
+  li .lock { display: block; border: 2px dashed var(--line); border-radius: 14px; padding: 14px 18px; color: var(--soft); background: transparent; }
+  li .lock b { color: var(--soft); }
   footer { margin-top: 30px; color: var(--soft); font-size: 15px; }
 </style>
 </head>
@@ -25,15 +27,19 @@
 <main>
   <h1>แล็บ<span>สมดุลเคมี</span> ทำด้วยตนเอง</h1>
   <p class="lead">เลือกแล็บ แล้วทำตามขั้นตอนบนหน้าจอ กดขวดสารเพื่อหยด กดหลอดเพื่อเลือก ใช้ปุ่ม ← → เปลี่ยนหน้า (เปิดบนคอมพิวเตอร์หรือแท็บเล็ตแนวนอนจะดูง่ายที่สุด)</p>
-  <ol>
-    <li><a href="equilibrium.html?lab=9-11"><b><span class="tag">เรื่องที่ 1</span>CuSO₄ + HCl</b><small>สีเปลี่ยนกลับไปกลับมาได้ไหม · 3 หน้า</small></a></li>
-    <li><a href="equilibrium.html?lab=22-25,27-28"><b><span class="tag">เรื่องที่ 2</span>Fe³⁺ กับ Fe²⁺</b><small>พิสูจน์ว่าปฏิกิริยาผันกลับได้ · ตอนที่ 1 และตอนที่ 2</small></a></li>
-    <li><a href="equilibrium.html?lab=85-87"><b><span class="tag">เรื่องที่ 9</span>ความเข้มข้นกับภาวะสมดุล</b><small>Fe³⁺ + SCN⁻ ⇌ FeSCN²⁺ · เติมสารแล้วดูสี</small></a></li>
-    <li><a href="equilibrium.html?lab=101"><b><span class="tag">เรื่องที่ 9</span>ความดัน: กด/ดึงกระบอกฉีดยา NO₂</b><small>ลากก้านกระบอกฉีดยาดูสีของแก๊ส</small></a></li>
-    <li><a href="equilibrium.html?lab=108"><b><span class="tag">เรื่องที่ 9</span>อุณหภูมิ: แช่น้ำร้อน/น้ำแข็ง NO₂</b><small>เปลี่ยนอุณหภูมิแล้วดูสีของแก๊ส</small></a></li>
-    <li><a href="equilibrium.html?lab=115"><b><span class="tag">เรื่องที่ 10</span>หาภาวะที่เหมาะสมของกระบวนการฮาเบอร์</b><small>เลือกอุณหภูมิและความดัน ดูปริมาณแอมโมเนีย</small></a></li>
-  </ol>
+  <ol id="list"><li style="color:var(--soft)">กำลังโหลดรายการแล็บ…</li></ol>
   <footer>สมดุลเคมี · เคมี ม.5 เทอม 2</footer>
 </main>
+<script>
+fetch('labs.json').then(r => r.json()).then(d => {
+  const esc = t => String(t).replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+  document.getElementById('list').innerHTML = d.labs.map(l => {
+    const head = '<b><span class="tag">' + esc(l.tag) + '</span>' + esc(l.title) + '</b>';
+    return l.open
+      ? '<li><a href="equilibrium.html?lab=' + encodeURIComponent(l.slides).replace(/%2C/g, ',') + '">' + head + '<small>' + esc(l.desc) + '</small></a></li>'
+      : '<li><span class="lock">' + head + '<small>🔒 ยังไม่เปิด · รอครูปลดล็อกในคาบเรียน</small></span></li>';
+  }).join('');
+}).catch(() => { document.getElementById('list').innerHTML = '<li>โหลดรายการแล็บไม่สำเร็จ ลองรีเฟรชหน้านี้</li>'; });
+</script>
 </body>
 </html>
